@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.wallet.AutoResolveHelper;
 import com.google.android.gms.wallet.CardRequirements;
 import com.google.android.gms.wallet.IsReadyToPayRequest;
@@ -65,56 +66,57 @@ public class CordovaStripe extends CordovaPlugin {
     public boolean execute(final String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
         switch (action) {
-            case "setPublishableKey":
+            if (action == "setPublishableKey"){
                 setPublishableKey(data.getString(0), callbackContext);
-                break;
+            }
 
-            case "createCardToken":
+            else if (action == "createCardToken"){
                 createCardToken(data.getJSONObject(0), callbackContext);
-                break;
+            }
 
-            case "createBankAccountToken":
+            else if (action == "createBankAccountToken"){
                 createBankAccountToken(data.getJSONObject(0), callbackContext);
-                break;
+            }
 
-            case "validateCardNumber":
+            else if (action == "validateCardNumber"){
                 validateCardNumber(data.getString(0), callbackContext);
-                break;
+            }
 
-            case "validateExpiryDate":
+            else if (action == "validateExpiryDate"){
                 validateExpiryDate(data.getInt(0), data.getInt(1), callbackContext);
-                break;
+            }
 
-            case "validateCVC":
+            else if (action == "validateCVC"){
                 validateCVC(data.getString(0), callbackContext);
-                break;
+            }
 
-            case "getCardType":
+            else if (action == "getCardType"){
                 getCardType(data.getString(0), callbackContext);
-                break;
+            }
 
-            case "createSource":
+            else if (action == "createSource"){
                 createSource(data.getInt(0), data.getJSONObject(1), callbackContext);
-                break;
+            }
 
-            case "initGooglePay":
+            else if (action == "initGooglePay"){
                 initGooglePay(callbackContext);
-                break;
+            }
 
-            case "createGooglePayToken":
+            else if (action == "createGooglePayToken"){
                 createGooglePayToken(data.getString(0), data.getString(2), callbackContext);
-                break;
+            }
 
-            case "createPiiToken":
+            else if (action == "createPiiToken":
                 createPiiToken(data.getString(0), callbackContext);
-                break;
+            }
 
-            case "createAccountToken":
+            else if (action == "createAccountToken"){
                 createAccountToken(data.getJSONObject(0), callbackContext);
-                break;
+            }
 
-            default:
+            else{
                 return false;
+			}
         }
 
         return true;
@@ -448,7 +450,7 @@ public class CordovaStripe extends CordovaPlugin {
                 .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_TOKENIZED_CARD)
                 .build();
         Task<Boolean> task = paymentsClient.isReadyToPay(request);
-        task.addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        task.addOnCompleteListener(new OnCompleteListener<Boolean>() {
                 @Override
                 public void onComplete(@NonNull Task<Boolean> task1) {
                     try {
