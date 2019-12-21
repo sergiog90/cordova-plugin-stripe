@@ -448,8 +448,9 @@ public class CordovaStripe extends CordovaPlugin {
                 .addAllowedPaymentMethod(WalletConstants.PAYMENT_METHOD_TOKENIZED_CARD)
                 .build();
         Task<Boolean> task = paymentsClient.isReadyToPay(request);
-        task.addOnCompleteListener(
-                (Task<Boolean> task1) -> {
+        task.addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<Boolean> task1) {
                     try {
                         googlePayReady =
                                 task1.getResult(ApiException.class);
@@ -471,7 +472,8 @@ public class CordovaStripe extends CordovaPlugin {
                     } catch (ApiException exception) {
                         callbackContext.error(exception.getLocalizedMessage());
                     }
-                });
+                }
+            }
     }
 
     private void createGooglePayToken(String totalPrice, String currencyCode, final CallbackContext callbackContext) {
@@ -502,13 +504,14 @@ public class CordovaStripe extends CordovaPlugin {
         final PaymentDataRequest finalRequest = request.build();
 
         if (finalRequest != null) {
-            cordova.getActivity().runOnUiThread(() -> {
-                AutoResolveHelper.resolveTask(
-                        paymentsClient.loadPaymentData(finalRequest),
-                        cordova.getActivity(),
-                        LOAD_PAYMENT_DATA_REQUEST_CODE
-                );
-                googlePayCallbackContext = callbackContext;
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                     AutoResolveHelper.resolveTask(
+                            paymentsClient.loadPaymentData(finalRequest),
+                            cordova.getActivity(),
+                            LOAD_PAYMENT_DATA_REQUEST_CODE
+                    );
+                    googlePayCallbackContext = callbackContext;                   
             });
         } else {
             callbackContext.error("Unable to pay with GooglePay");
