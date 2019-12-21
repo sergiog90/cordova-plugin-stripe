@@ -65,59 +65,58 @@ public class CordovaStripe extends CordovaPlugin {
     @Override
     public boolean execute(final String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
-        switch (action) {
-            if (action == "setPublishableKey"){
-                setPublishableKey(data.getString(0), callbackContext);
-            }
 
-            else if (action == "createCardToken"){
-                createCardToken(data.getJSONObject(0), callbackContext);
-            }
+		if (action == "setPublishableKey"){
+			setPublishableKey(data.getString(0), callbackContext);
+		}
 
-            else if (action == "createBankAccountToken"){
-                createBankAccountToken(data.getJSONObject(0), callbackContext);
-            }
+		else if (action == "createCardToken"){
+			createCardToken(data.getJSONObject(0), callbackContext);
+		}
 
-            else if (action == "validateCardNumber"){
-                validateCardNumber(data.getString(0), callbackContext);
-            }
+		else if (action == "createBankAccountToken"){
+			createBankAccountToken(data.getJSONObject(0), callbackContext);
+		}
 
-            else if (action == "validateExpiryDate"){
-                validateExpiryDate(data.getInt(0), data.getInt(1), callbackContext);
-            }
+		else if (action == "validateCardNumber"){
+			validateCardNumber(data.getString(0), callbackContext);
+		}
 
-            else if (action == "validateCVC"){
-                validateCVC(data.getString(0), callbackContext);
-            }
+		else if (action == "validateExpiryDate"){
+			validateExpiryDate(data.getInt(0), data.getInt(1), callbackContext);
+		}
 
-            else if (action == "getCardType"){
-                getCardType(data.getString(0), callbackContext);
-            }
+		else if (action == "validateCVC"){
+			validateCVC(data.getString(0), callbackContext);
+		}
 
-            else if (action == "createSource"){
-                createSource(data.getInt(0), data.getJSONObject(1), callbackContext);
-            }
+		else if (action == "getCardType"){
+			getCardType(data.getString(0), callbackContext);
+		}
 
-            else if (action == "initGooglePay"){
-                initGooglePay(callbackContext);
-            }
+		else if (action == "createSource"){
+			createSource(data.getInt(0), data.getJSONObject(1), callbackContext);
+		}
 
-            else if (action == "createGooglePayToken"){
-                createGooglePayToken(data.getString(0), data.getString(2), callbackContext);
-            }
+		else if (action == "initGooglePay"){
+			initGooglePay(callbackContext);
+		}
 
-            else if (action == "createPiiToken":
-                createPiiToken(data.getString(0), callbackContext);
-            }
+		else if (action == "createGooglePayToken"){
+			createGooglePayToken(data.getString(0), data.getString(2), callbackContext);
+		}
 
-            else if (action == "createAccountToken"){
-                createAccountToken(data.getJSONObject(0), callbackContext);
-            }
+		else if (action == "createPiiToken"){
+			createPiiToken(data.getString(0), callbackContext);
+		}
 
-            else{
-                return false;
-			}
-        }
+		else if (action == "createAccountToken"){
+			createAccountToken(data.getJSONObject(0), callbackContext);
+		}
+
+		else{
+			return false;
+		}
 
         return true;
     }
