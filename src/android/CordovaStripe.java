@@ -67,51 +67,51 @@ public class CordovaStripe extends CordovaPlugin {
     public boolean execute(final String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
 
 
-		if (action == "setPublishableKey"){
+		if (action.equals("setPublishableKey")){
 			setPublishableKey(data.getString(0), callbackContext);
 		}
 
-		else if (action == "createCardToken"){
+		else if (action.equals("createCardToken")){
 			createCardToken(data.getJSONObject(0), callbackContext);
 		}
 
-		else if (action == "createBankAccountToken"){
+		else if (action.equals("createBankAccountToken")){
 			createBankAccountToken(data.getJSONObject(0), callbackContext);
 		}
 
-		else if (action == "validateCardNumber"){
+		else if (action.equals("validateCardNumber")){
 			validateCardNumber(data.getString(0), callbackContext);
 		}
 
-		else if (action == "validateExpiryDate"){
+		else if (action.equals("validateExpiryDate")){
 			validateExpiryDate(data.getInt(0), data.getInt(1), callbackContext);
 		}
 
-		else if (action == "validateCVC"){
+		else if (action.equals("validateCVC")){
 			validateCVC(data.getString(0), callbackContext);
 		}
 
-		else if (action == "getCardType"){
+		else if (action.equals("getCardType")){
 			getCardType(data.getString(0), callbackContext);
 		}
 
-		else if (action == "createSource"){
+		else if (action.equals("createSource")){
 			createSource(data.getInt(0), data.getJSONObject(1), callbackContext);
 		}
 
-		else if (action == "initGooglePay"){
+		else if (action.equals("initGooglePay")){
 			initGooglePay(callbackContext);
 		}
 
-		else if (action == "createGooglePayToken"){
+		else if (action.equals("createGooglePayToken")){
 			createGooglePayToken(data.getString(0), data.getString(2), callbackContext);
 		}
 
-		else if (action == "createPiiToken"){
+		else if (action.equals("createPiiToken")){
 			createPiiToken(data.getString(0), callbackContext);
 		}
 
-		else if (action == "createAccountToken"){
+		else if (action.equals("createAccountToken")){
 			createAccountToken(data.getJSONObject(0), callbackContext);
 		}
 
