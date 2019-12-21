@@ -22,7 +22,7 @@
                     android:value="true"/>
         </config-file>
         <source-file src="src/android/CordovaStripe.java" target-dir="src/com/zyramedia/cordova/stripe"/>
-        <framework src="com.stripe:stripe-android:8.1.0"/>
+
     </platform>
 
     <platform name="ios">
