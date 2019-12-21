@@ -506,16 +506,7 @@ public class CordovaStripe extends CordovaPlugin {
         final PaymentDataRequest finalRequest = request.build();
 
         if (finalRequest != null) {
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                     AutoResolveHelper.resolveTask(
-                            paymentsClient.loadPaymentData(finalRequest),
-                            cordova.getActivity(),
-                            LOAD_PAYMENT_DATA_REQUEST_CODE
-                    );
-                    googlePayCallbackContext = callbackContext;    
-				}					
-            });
+            callbackContext.error("Unable to pay with GooglePay");
         } else {
             callbackContext.error("Unable to pay with GooglePay");
         }
