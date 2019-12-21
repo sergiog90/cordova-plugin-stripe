@@ -104,7 +104,7 @@ public class CordovaStripe extends CordovaPlugin {
 		}
 
 		else if (action.equals("createGooglePayToken")){
-			createGooglePayToken(data.getString(0), data.getString(2), callbackContext);
+			createGooglePayToken(data.getString(0), data.getString(1), callbackContext);
 		}
 
 		else if (action.equals("createPiiToken")){
