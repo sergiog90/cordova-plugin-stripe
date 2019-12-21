@@ -473,7 +473,7 @@ public class CordovaStripe extends CordovaPlugin {
                         callbackContext.error(exception.getLocalizedMessage());
                     }
                 }
-            }
+            });
     }
 
     private void createGooglePayToken(String totalPrice, String currencyCode, final CallbackContext callbackContext) {
@@ -511,7 +511,8 @@ public class CordovaStripe extends CordovaPlugin {
                             cordova.getActivity(),
                             LOAD_PAYMENT_DATA_REQUEST_CODE
                     );
-                    googlePayCallbackContext = callbackContext;                   
+                    googlePayCallbackContext = callbackContext;    
+				}					
             });
         } else {
             callbackContext.error("Unable to pay with GooglePay");
