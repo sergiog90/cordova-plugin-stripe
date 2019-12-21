@@ -2,6 +2,7 @@ package com.zyramedia.cordova.stripe;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import android.support.annotation.NonNull;
@@ -439,7 +440,7 @@ public class CordovaStripe extends CordovaPlugin {
 
     private void initGooglePay(final CallbackContext callbackContext) {
         paymentsClient = Wallet.getPaymentsClient(
-                cordova.getContext(),
+                cordova.getActivity().getApplicationContext(),
                 new Wallet.WalletOptions.Builder().setEnvironment(publishableKey == null || publishableKey.contains("test") ? WalletConstants.ENVIRONMENT_TEST : WalletConstants.ENVIRONMENT_PRODUCTION)
                         .build()
         );
