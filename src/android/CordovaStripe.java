@@ -508,12 +508,14 @@ public class CordovaStripe extends CordovaPlugin {
         if (finalRequest != null) {
 cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
+			googlePayCallbackContext = callbackContext;
+			cordova.setActivityResultCallback(this);
                      AutoResolveHelper.resolveTask(
                             paymentsClient.loadPaymentData(finalRequest),
                             cordova.getActivity(),
                             LOAD_PAYMENT_DATA_REQUEST_CODE
                     );
-                    googlePayCallbackContext = callbackContext;    
+                        
 				}					
             });
         } else {
