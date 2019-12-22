@@ -504,12 +504,12 @@ public class CordovaStripe extends CordovaPlugin {
 
         request.setPaymentMethodTokenizationParameters(googlePayParams);
         final PaymentDataRequest finalRequest = request.build();
-
+CordovaPlugin currentClass = this;
         if (finalRequest != null) {
 cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
 			googlePayCallbackContext = callbackContext;
-			cordova.setActivityResultCallback(this);
+			cordova.setActivityResultCallback(currentClass);
                      AutoResolveHelper.resolveTask(
                             paymentsClient.loadPaymentData(finalRequest),
                             cordova.getActivity(),
