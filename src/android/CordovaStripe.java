@@ -504,7 +504,7 @@ public class CordovaStripe extends CordovaPlugin {
 
         request.setPaymentMethodTokenizationParameters(googlePayParams);
         final PaymentDataRequest finalRequest = request.build();
-CordovaPlugin currentClass = this;
+final CordovaPlugin currentClass = this;
         if (finalRequest != null) {
 cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
