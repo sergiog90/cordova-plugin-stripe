@@ -22,7 +22,6 @@
                     android:value="true"/>
         </config-file>
         <source-file src="src/android/CordovaStripe.java" target-dir="src/com/zyramedia/cordova/stripe"/>
-        <framework src="com.google.android.gms:play-services-wallet:16.0.0"/>
 
 
         <framework src="com.stripe:stripe-android:8.1.0"/>
