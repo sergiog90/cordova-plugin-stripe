@@ -1,4 +1,5 @@
 #import "CordovaStripe.h"
+#import "CordovaStripe+ApplePay.h"
 @import Stripe;
 
 @implementation CordovaStripe
@@ -50,7 +51,7 @@ NSArray *CardBrands = nil;
     if ([Stripe canSubmitPaymentRequest:paymentRequest]) {
         PKPaymentAuthorizationViewController *paymentAuthorizationViewController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:paymentRequest];
         
-        paymentAuthorizationViewController.delegate = self.appDelegate;
+        paymentAuthorizationViewController.delegate = self;
         self.applePayCDVCallbackId = command.callbackId;
         
         NSLog(@"Callback ID is %@", command.callbackId);
